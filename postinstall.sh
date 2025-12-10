@@ -2,6 +2,12 @@
 # Script d’installation et de configuration de base
 # Pour Debian (à exécuter en root)
 
+### Vérification des droits root ###
+if [ "$EUID" -ne 0 ]; then
+  echo "Ce script doit être exécuté en root (sudo ou connexion root)."
+  exit 1
+fi
+
 echo "=== Mise à jour du système ==="
 apt update && apt upgrade -y
 
@@ -33,7 +39,7 @@ if [ -f "$BASHRC" ]; then
         -e "s/^# alias l='/alias l='/" \
         "$BASHRC"
 
-    echo " -> Alias ls & dircolors décommentés."
+    echo " -> Alias LS décommentés."
 else
     echo " -> /root/.bashrc introuvable, non modifié."
 fi
