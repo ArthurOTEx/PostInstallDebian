@@ -39,7 +39,7 @@ if [ -f "$BASHRC" ]; then
         -e "s/^# alias l='/alias l='/" \
         "$BASHRC"
 
-    echo " -> Alias LS décommentés."
+    echo " -> Alias LS & dircolors décommentés."
 else
     echo " -> /root/.bashrc introuvable, non modifié."
 fi
