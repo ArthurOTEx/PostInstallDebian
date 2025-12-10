@@ -20,13 +20,49 @@ else
 fi
 
 echo "=== Personnalisation du /root/.bashrc (décommenter lignes 9 à 13) ==="
-echo "" >> ~/.bashrc
-echo "# Personnalisation des alias LS" >> ~/.bashrc
-echo "export LS_OPTIONS='--color=auto'" >> ~/.bashrc
-echo "eval \"\$(dircolors)\"" >> ~/.bashrc
-echo "alias ls='ls \$LS_OPTIONS'" >> ~/.bashrc
-echo "alias ll='ls \$LS_OPTIONS -l'" >> ~/.bashrc
-echo "alias l='ls \$LS_OPTIONS -lA'" >> ~/.bashrc
+BASHRC="/root/.bashrc"   # change en ~/.bashrc si besoin
+
+echo "Mise à jour de $BASHRC"
+
+# 1) export LS_OPTIONS
+if grep -qxF "export LS_OPTIONS='--color=auto'" "$BASHRC"; then
+    echo "Ligne déjà présente : export LS_OPTIONS"
+else
+    echo "export LS_OPTIONS='--color=auto'" >> "$BASHRC"
+    echo "Ajout : export LS_OPTIONS"
+fi
+
+# 2) eval "$(dircolors)"
+if grep -qxF 'eval "$(dircolors)"' "$BASHRC"; then
+    echo "Ligne déjà présente : eval dircolors"
+else
+    echo 'eval "$(dircolors)"' >> "$BASHRC"
+    echo "Ajout : eval dircolors"
+fi
+
+# 3) alias ls
+if grep -qxF "alias ls='ls \$LS_OPTIONS'" "$BASHRC"; then
+    echo "Ligne déjà présente : alias ls"
+else
+    echo "alias ls='ls \$LS_OPTIONS'" >> "$BASHRC"
+    echo "Ajout : alias ls"
+fi
+
+# 4) alias ll
+if grep -qxF "alias ll='ls \$LS_OPTIONS -l'" "$BASHRC"; then
+    echo "Ligne déjà présente : alias ll"
+else
+    echo "alias ll='ls \$LS_OPTIONS -l'" >> "$BASHRC"
+    echo "Ajout : alias ll"
+fi
+
+# 5) alias l
+if grep -qxF "alias l='ls \$LS_OPTIONS -lA'" "$BASHRC"; then
+    echo "Ligne déjà présente : alias l"
+else
+    echo "alias l='ls \$LS_OPTIONS -lA'" >> "$BASHRC"
+    echo "Ajout : alias l"
+fi
 
 echo "=== Installation de Webmin ==="
 curl -o webmin-setup-repo.sh https://raw.githubusercontent.com/webmin/webmin/master/webmin-setup-repo.sh
