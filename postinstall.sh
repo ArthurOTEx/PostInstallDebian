@@ -29,7 +29,5 @@ echo "y" | sh webmin-setup-repo.sh > /dev/null
 apt update
 apt install webmin --install-recommends -y
 
-echo "=== Post-installation terminée ==="
-
 echo "=== Installation terminée ==="
 echo "=== Webmin (https://<IP>:10000). ==="
